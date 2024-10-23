@@ -57,7 +57,7 @@ class UsuarioController{
     }
     
     private function eliminarEmpleado():void{
-     if(is_string(isset($_POST['id']))){
+     if(is_string(isset($_GET['id']))){
             $id = is_string($_POST['id']);
             $this->modeloEmpleados->eliminarEmpleado($id);
             $this->listarEmpleados();
