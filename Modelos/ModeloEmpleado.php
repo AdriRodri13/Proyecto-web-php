@@ -103,7 +103,7 @@ class ModeloEmpleado {
      * 
      * @return array Un array de empleados obtenidos de la base de datos.
      */
-    public function recogerAlumnos(): array {
+    public function recogerEmpleados(): array {
         try {
             // Consulta para obtener todos los empleados
             $sql = "SELECT * FROM empleados";

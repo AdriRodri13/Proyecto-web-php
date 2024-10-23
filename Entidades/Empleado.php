@@ -12,7 +12,7 @@ class Empleado {
         private string $nombre,
         private string $email,
         private string $puesto,
-        private float $suledo
+        private float $sueldo
     ) {}
     
     public function getId(): string {
@@ -31,8 +31,8 @@ class Empleado {
         return $this->puesto;
     }
 
-    public function getSuledo(): float {
-        return $this->suledo;
+    public function getSueldo(): float {
+        return $this->sueldo;
     }
 
     public function setId(string $id): void {
@@ -51,8 +51,8 @@ class Empleado {
         $this->puesto = $puesto;
     }
 
-    public function setSuledo(float $suledo): void {
-        $this->suledo = $suledo;
+    public function setSueldo(float $suledo): void {
+        $this->sueldo = $suledo;
     }
     
     public function equals(string $id):bool{
@@ -64,7 +64,7 @@ class Empleado {
                 . ", nombre=" . $this->nombre
                 . ", email=" . $this->email
                 . ", puesto=" . $this->puesto
-                . ", suledo=" . $this->suledo
+                . ", suledo=" . $this->sueldo
                 . "]";
     }
 
