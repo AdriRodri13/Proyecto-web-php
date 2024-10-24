@@ -122,6 +122,34 @@ class ModeloEmpleado {
         }
     }
 
+    public function recogerEmpleado(string $id): Empleado {
+        try {
+            $sql = "SELECT * FROM empleados wehere id = :id";
+
+            $stmt = $this->conexion->prepare($sql);
+
+            $stmt->bindParam(1, $id);
+
+            $stmt->execute();
+
+            $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+            $empleado=null;
+            // Si hay resultados, creamos una instancia de Empleado
+            if ($fila) {
+                $empleado = new Empleado(
+                        $fila['id'],
+                        $fila['nombre'],
+                        $fila['email'],
+                        $fila['puesto'],
+                        (float) $fila['sueldo'] // Aseguramos el tipo float para el sueldo
+                );
+            }
+            return $empleado;
+        } catch (PDOException $e) {
+            $this->manejarExcepcion($e);
+        }
+    }
+
     /**
      * Maneja excepciones relacionadas con la base de datos.
      * Al producirse un error, guarda el mensaje de error en la 

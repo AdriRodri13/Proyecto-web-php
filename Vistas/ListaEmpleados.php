@@ -25,8 +25,8 @@
                    echo '<td>'. $empleado->getPuesto() .'</td>';
                    echo '<td>'. $empleado->getSueldo() .'</td>';
                    echo '<td>';
-                   echo '<a href="../Controladores/UsuarioController.php?action=editar&id=' . $empleado->getId() . '">Editar</a> | ';
-                   echo '<a href="../Controladores/UsuarioController.php?action=eliminar&id=' . $empleado->getId() . '">Eliminar</a>';
+                   echo '<a href="../Controladores/UsuarioController.php?instruccion=cargar&id=' . $empleado->getId() . '">Editar</a> | ';
+                   echo '<a href="../Controladores/UsuarioController.php?instruccion=eliminar&id=' . $empleado->getId() . '">Eliminar</a>';
                    echo '</td>';
                }
             }
