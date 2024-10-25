@@ -112,8 +112,20 @@ class ModeloEmpleado {
             $stmt = $this->conexion->prepare($sql);
             $stmt->execute();
 
-            // Obtener todos los resultados
-            $empleados = $stmt->fetchAll();
+            // Obtener todos los resultados como un array asociativo
+            $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Crear un array de objetos Empleado
+            $empleados = [];
+            foreach ($filas as $fila) {
+                $empleados[] = new Empleado(
+                        $fila['id'],
+                        $fila['nombre'],
+                        $fila['email'],
+                        $fila['puesto'],
+                        $fila['sueldo']
+                );
+            }
 
             // Retornar los resultados
             return $empleados;
@@ -133,7 +145,7 @@ class ModeloEmpleado {
             $stmt->execute();
 
             $fila = $stmt->fetch(PDO::FETCH_ASSOC);
-            $empleado=null;
+            $empleado = null;
             // Si hay resultados, creamos una instancia de Empleado
             if ($fila) {
                 $empleado = new Empleado(

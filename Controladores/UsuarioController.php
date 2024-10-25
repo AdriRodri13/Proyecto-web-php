@@ -3,6 +3,7 @@
 require '../Conexion/Conexion.php';
 require '../Modelos/ModeloEmpleado.php';
 require '../Entidades/Empleado.php';
+require '../Entidades/View.php';
 
 class UsuarioController{
     
@@ -60,7 +61,7 @@ class UsuarioController{
     }
     
     private function cargarEmpleado():void{
-        if(isset(is_string($_GET['id']))){
+        if(is_string(isset($_GET['id']))){
             $id = $_GET['id'];
             $empleado = $this->modeloEmpleados->recogerEmpleado($id);
             View::render('../Vistas/ActualizarEmpleado.php',['empleado'=>$empleado]);
@@ -80,10 +81,10 @@ $controlador = new UsuarioController();
 
 $instruccion = "";
 
-if (isset(is_string($_POST['instruccion']))) {
+if (is_string(isset($_POST['instruccion']))) {
     // Si la instrucción llega por POST
     $instruccion = $_POST['instruccion'];
-} elseif (isset(is_string($_GET['instruccion']))) {
+} elseif (is_string(isset($_GET['instruccion']))) {
     // Si la instrucción llega por GET
     $instruccion = $_GET['instruccion'];
 } else {

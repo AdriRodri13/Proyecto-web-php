@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <html>
     <head>
         <title>Lista Empleados</title>
@@ -16,21 +12,22 @@
                 <th>SUELDO</th>
                 <th>ACCION</th>
             </tr>
-            <?php 
-            foreach ($empleado as $empleado) {
-               if($empleado instanceof Empleado){
-                   echo '<td>'. $empleado->getId() .'</td>';
-                   echo '<td>'. $empleado->getNombre() .'</td>';
-                   echo '<td>'. $empleado->getEmail() .'</td>';
-                   echo '<td>'. $empleado->getPuesto() .'</td>';
-                   echo '<td>'. $empleado->getSueldo() .'</td>';
-                   echo '<td>';
-                   echo '<a href="../Controladores/UsuarioController.php?instruccion=cargar&id=' . $empleado->getId() . '">Editar</a> | ';
-                   echo '<a href="../Controladores/UsuarioController.php?instruccion=eliminar&id=' . $empleado->getId() . '">Eliminar</a>';
-                   echo '</td>';
-               }
-            }
-            ?>
+            
+            <?php foreach ($empleados as $empleado): ?>
+            <?php if ($empleado instanceof Empleado): ?>
+                <tr>
+                    <td><?php echo $empleado->getId(); ?></td>
+                    <td><?php echo $empleado->getNombre(); ?></td>
+                    <td><?php echo $empleado->getEmail(); ?></td>
+                    <td><?php echo $empleado->getPuesto(); ?></td>
+                    <td><?php echo $empleado->getSueldo(); ?></td>
+                    <td>
+                        <a href="../Controladores/UsuarioController.php?instruccion=cargar&id=<?php echo $empleado->getId(); ?>">Editar</a> |
+                        <a href="../Controladores/UsuarioController.php?instruccion=eliminar&id=<?php echo $empleado->getId(); ?>">Eliminar</a>
+                    </td>
+                </tr>
+            <?php endif; ?>
+        <?php endforeach; ?>
         </table>
     </body>
 </html>
