@@ -1,7 +1,7 @@
 <?php
 
 class ModeloEmpleado {
-
+    
     public function __construct(
             private PDO $conexion
     ) {
@@ -136,7 +136,7 @@ class ModeloEmpleado {
 
     public function recogerEmpleado(string $id): Empleado {
         try {
-            $sql = "SELECT * FROM empleados wehere id = :id";
+            $sql = "SELECT * FROM empleados where id = :id";
 
             $stmt = $this->conexion->prepare($sql);
 
@@ -175,3 +175,5 @@ class ModeloEmpleado {
         exit();
     }
 }
+
+session_start();

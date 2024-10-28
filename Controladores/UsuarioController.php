@@ -33,7 +33,7 @@ class UsuarioController{
     }
     
     private function insertarEmpleado():void{
-        if(is_string(isset($_POST['empleado']))){
+        if (isset($_POST['empleado']) && is_string($_POST['empleado'])){
             $id = is_string($_POST['empleado']['id']);
             $nombre = is_string($_POST['empleado']['nombre']);
             $email = is_string($_POST['empleado']['email']);
@@ -46,7 +46,7 @@ class UsuarioController{
     }
     
     private function actualizarEmpleado():void{
-        if(is_array(isset($_POST['empleado']))){
+        if (isset($_POST['empleado'])){
             $datosEmpleado = is_array($_POST['empleado']); 
             $id = is_string($_POST['empleado']['id']);
             $nombre = $datosEmpleado['nombre'];
@@ -61,7 +61,7 @@ class UsuarioController{
     }
     
     private function cargarEmpleado():void{
-        if(is_string(isset($_GET['id']))){
+        if (isset($_GET['id']) && is_string($_GET['id'])){
             $id = $_GET['id'];
             $empleado = $this->modeloEmpleados->recogerEmpleado($id);
             View::render('../Vistas/ActualizarEmpleado.php',['empleado'=>$empleado]);
@@ -69,7 +69,7 @@ class UsuarioController{
     }
     
     private function eliminarEmpleado():void{
-     if(is_string(isset($_GET['id']))){
+    if (isset($_GET['id']) && is_string($_GET['id'])){
             $id = is_string($_GET['id']);
             $this->modeloEmpleados->eliminarEmpleado($id);
             $this->listarEmpleados();
@@ -84,8 +84,7 @@ $instruccion = "";
 if (is_string(isset($_POST['instruccion']))) {
     // Si la instrucción llega por POST
     $instruccion = $_POST['instruccion'];
-} elseif (is_string(isset($_GET['instruccion']))) {
-    // Si la instrucción llega por GET
+} elseif (isset($_GET['instruccion']) && is_string($_GET['instruccion'])) {
     $instruccion = $_GET['instruccion'];
 } else {
     $instruccion = 'listar';
