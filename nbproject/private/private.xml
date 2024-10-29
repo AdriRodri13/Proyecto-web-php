@@ -5,9 +5,10 @@
         <group>
             <file>file:/C:/xampp/htdocs/Proyecto-web-php/Vistas/ListaEmpleados.php</file>
             <file>file:/C:/xampp/htdocs/Proyecto-web-php/Modelos/ModeloEmpleado.php</file>
-            <file>file:/C:/xampp/htdocs/Proyecto-web-php/Controladores/errores.php</file>
             <file>file:/C:/xampp/htdocs/Proyecto-web-php/Vistas/ActualizarEmpleado.php</file>
+            <file>file:/C:/xampp/htdocs/Proyecto-web-php/Entidades/Empleado.php</file>
             <file>file:/C:/xampp/htdocs/Proyecto-web-php/Controladores/UsuarioController.php</file>
+            <file>file:/C:/xampp/htdocs/Proyecto-web-php/Vistas/AñadirEmpleado.php</file>
         </group>
     </open-files>
 </project-private>

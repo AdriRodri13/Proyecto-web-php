@@ -8,11 +8,12 @@
 class Empleado {
     
     public function __construct(
-        private string $id,
+        
         private string $nombre,
         private string $email,
         private string $puesto,
-        private float $sueldo
+        private float $sueldo,
+        private string $id="provisional"
     ) {}
     
     public function getId(): string {

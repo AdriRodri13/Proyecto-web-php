@@ -1,7 +1,7 @@
 <?php
 
 class ModeloEmpleado {
-    
+
     public function __construct(
             private PDO $conexion
     ) {
@@ -36,13 +36,14 @@ class ModeloEmpleado {
      * @return bool Retorna true si la inserción fue exitosa, false en caso contrario.
      */
     public function insertarEmpleado(Empleado $empleado): bool {
-        $sql = "INSERT INTO empleados (id,nombre, email, puesto, sueldo) VALUES (_id, :nombre, :email, :puesto, :sueldo)";
+        // Genera el ID automáticamente en la base de datos con UUID()
+        $sql = "INSERT INTO empleados (id, nombre, email, puesto, sueldo) VALUES (UUID(), :nombre, :email, :puesto, :sueldo)";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindValue(':nombre', $empleado->getNombre());
         $stmt->bindValue(':email', $empleado->getEmail());
         $stmt->bindValue(':puesto', $empleado->getPuesto());
         $stmt->bindValue(':sueldo', $empleado->getSueldo());
-        $stmt->bindValue(':id', $empleado->getId());
+
         return $stmt->execute();
     }
 
@@ -91,9 +92,8 @@ class ModeloEmpleado {
 
             // Ejecutar la consulta
             return $stmt->execute();
-        } else {
-            return false;
-        }
+        } 
+        
     }
 
     /**
@@ -119,11 +119,11 @@ class ModeloEmpleado {
             $empleados = [];
             foreach ($filas as $fila) {
                 $empleados[] = new Empleado(
-                        $fila['id'],
                         $fila['nombre'],
                         $fila['email'],
                         $fila['puesto'],
-                        $fila['sueldo']
+                        $fila['sueldo'],
+                        $fila['id']
                 );
             }
 
@@ -149,11 +149,11 @@ class ModeloEmpleado {
             // Si hay resultados, creamos una instancia de Empleado
             if ($fila) {
                 $empleado = new Empleado(
-                        $fila['id'],
                         $fila['nombre'],
                         $fila['email'],
                         $fila['puesto'],
-                        (float) $fila['sueldo'] // Aseguramos el tipo float para el sueldo
+                        (float) $fila['sueldo'],
+                        $fila['id']
                 );
             }
             return $empleado;

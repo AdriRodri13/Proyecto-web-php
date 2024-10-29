@@ -33,13 +33,14 @@ class UsuarioController{
     }
     
     private function insertarEmpleado():void{
-        if (isset($_POST['empleado']) && is_string($_POST['empleado'])){
-            $id = is_string($_POST['empleado']['id']);
-            $nombre = is_string($_POST['empleado']['nombre']);
-            $email = is_string($_POST['empleado']['email']);
-            $puesto = is_string($_POST['empleado']['puesto']);
-            $sueldo = is_string($_POST['empleado']['sueldo']);
-            $empleado = new Empleado($id, $nombre, $email, $puesto, $sueldo);
+        if (isset($_POST['empleado'])){
+            $nombre = $_POST['empleado']['nombre'];
+            $email = $_POST['empleado']['email'];
+            $puesto = $_POST['empleado']['puesto'];
+            $sueldo = $_POST['empleado']['sueldo'];
+            
+            $empleado = new Empleado($nombre, $email, $puesto, $sueldo);
+            
             $this->modeloEmpleados->insertarEmpleado($empleado);
             $this->listarEmpleados();
         }
@@ -47,14 +48,13 @@ class UsuarioController{
     
     private function actualizarEmpleado():void{
         if (isset($_POST['empleado'])){
-            $datosEmpleado = is_array($_POST['empleado']); 
-            $id = is_string($_POST['empleado']['id']);
+            $datosEmpleado = $_POST['empleado']; 
+            $id = $datosEmpleado['id'];
             $nombre = $datosEmpleado['nombre'];
             $email = $datosEmpleado['email'];
             $puesto = $datosEmpleado['puesto'];
             $sueldo = (float) $datosEmpleado['sueldo'];
-            
-            $empleado = new Empleado($id, $nombre, $email, $puesto, $sueldo);
+            $empleado = new Empleado($nombre, $email, $puesto, $sueldo,$id);
             $this->modeloEmpleados->actualizarEmpleado($empleado);
             $this->listarEmpleados();
         }
@@ -70,7 +70,7 @@ class UsuarioController{
     
     private function eliminarEmpleado():void{
     if (isset($_GET['id']) && is_string($_GET['id'])){
-            $id = is_string($_GET['id']);
+            $id = $_GET['id'];
             $this->modeloEmpleados->eliminarEmpleado($id);
             $this->listarEmpleados();
         }   
@@ -81,7 +81,7 @@ $controlador = new UsuarioController();
 
 $instruccion = "";
 
-if (is_string(isset($_POST['instruccion']))) {
+if (isset($_POST['instruccion']) && is_string($_POST['instruccion'])) {
     // Si la instrucción llega por POST
     $instruccion = $_POST['instruccion'];
 } elseif (isset($_GET['instruccion']) && is_string($_GET['instruccion'])) {
